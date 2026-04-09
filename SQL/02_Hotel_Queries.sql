@@ -1,3 +1,4 @@
+--1. For every user in the system, get the user_id and last booked room_no
 SELECT user_id, room_no
 FROM (
     SELECT user_id, room_no,
