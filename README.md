@@ -38,7 +38,7 @@ A.SQL Tasks:
   - Date and time functions to analyze:
     - Same day ticket closure
     - Same hour ticket closure
-      https://docs.google.com/spreadsheets/d/1x6pIvJV-AQCWiJxrqVm4VGZjDWYog6Z09o4zlzhO_h4/edit?usp=sharing
+    You can find the spreadsheet from here - https://docs.google.com/spreadsheets/d/1x6pIvJV-AQCWiJxrqVm4VGZjDWYog6Z09o4zlzhO_h4/edit?usp=sharing
 
 ---
  C.Python Tasks:
