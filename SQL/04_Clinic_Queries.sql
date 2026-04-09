@@ -1,9 +1,11 @@
+--1. Find the revenue we got from each sales channel in a given year
 SELECT sales_channel,
        SUM(amount) AS total_revenue
 FROM clinic_sales
 WHERE YEAR(datetime) = 2021
 GROUP BY sales_channel;
 
+--2. Find top 10 the most valuable customers for a given year
 SELECT uid,
        SUM(amount) AS total_spent
 FROM clinic_sales
@@ -12,6 +14,7 @@ GROUP BY uid
 ORDER BY total_spent DESC
 LIMIT 10;
 
+--3. Find month wise revenue, expense, profit , status (profitable / not-profitable) for a given year
 WITH revenue AS (
     SELECT MONTH(datetime) AS month,
            SUM(amount) AS revenue
@@ -37,7 +40,7 @@ SELECT r.month,
 FROM revenue r
 JOIN expense e ON r.month = e.month;
 
-
+--4. For each city find the most profitable clinic for a given month
 WITH profit_calc AS (
     SELECT c.city, cs.cid,
            SUM(cs.amount) - COALESCE(SUM(e.amount),0) AS profit
@@ -56,7 +59,7 @@ SELECT *
 FROM ranked
 WHERE rnk = 1;
 
-
+--5. For each state find the second least profitable clinic for a given month
 WITH profit_calc AS (
     SELECT c.state, cs.cid,
            SUM(cs.amount) - COALESCE(SUM(e.amount),0) AS profit
