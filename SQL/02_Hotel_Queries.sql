@@ -7,6 +7,7 @@ FROM (
 ) t
 WHERE rn = 1;
 
+--2. Get booking_id and total billing amount of every booking created in November, 2021
 SELECT bc.booking_id,
        SUM(i.item_rate * bc.item_quantity) AS total_amount
 FROM booking_commercials bc
@@ -15,6 +16,7 @@ WHERE MONTH(bc.bill_date) = 11
   AND YEAR(bc.bill_date) = 2021
 GROUP BY bc.booking_id;
 
+--3. Get bill_id and bill amount of all the bills raised in October, 2021 having bill amount >1000
 SELECT bc.bill_id,
        SUM(i.item_rate * bc.item_quantity) AS bill_amount
 FROM booking_commercials bc
@@ -24,6 +26,7 @@ WHERE MONTH(bc.bill_date) = 10
 GROUP BY bc.bill_id
 HAVING SUM(i.item_rate * bc.item_quantity) > 1000;
 
+--4. Determine the most ordered and least ordered item of each month of year 2021
 WITH item_orders AS (
     SELECT item_id,
            MONTH(bill_date) AS month,
@@ -42,6 +45,7 @@ SELECT *
 FROM ranked
 WHERE max_rank = 1 OR min_rank = 1;
 
+--5. Find the customers with the second highest bill value of each month of year 2021
 WITH monthly_bills AS (
     SELECT bill_id,
            MONTH(bill_date) AS month,
